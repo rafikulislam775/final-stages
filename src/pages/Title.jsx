@@ -5,7 +5,11 @@ const Title = ({ children }) => {
         {children}
       </h1>
       <h1 className="absolute text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-10xl bottom-5 left-1/2 transform -translate-x-1/4 opacity-20 font-extrabold z-0">
-        {children}
+        {children == "Price"
+          ? "料金"
+          : children || children == "Services"
+          ? "サービス"
+          : children}
       </h1>
     </div>
   );
