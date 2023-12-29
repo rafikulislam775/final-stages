@@ -47,7 +47,10 @@ const NavSection = () => {
       </div>
 
       <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-14">
-        <span className="text-red-500 font-bold">Final Stage</span> に任せて
+        <span className="  text-red-500 font-bold">
+          FINAL STAGE
+        </span>{" "}
+        に任せて
         <Typewriter
           options={{
             strings: [

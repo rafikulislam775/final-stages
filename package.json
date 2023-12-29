@@ -1,13 +1,10 @@
 {
-  "homepage": "https://rafikulislam775.github.io/final-stages",
-  "name": "final-stages",
+  "name": "final-stage",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "predeploy": "npm run build && (if not exist temp-dist mkdir temp-dist) && xcopy /s /y dist temp-dist",
-    "deploy": "gh-pages -d temp-dist",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
