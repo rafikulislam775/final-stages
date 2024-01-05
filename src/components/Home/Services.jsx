@@ -5,6 +5,7 @@ import img2 from "../../assets/services2.jpg";
 import img3 from "../../assets/man.png";
 import Title from "../../pages/Title";
 import { MdOutlineDoubleArrow } from "react-icons/md";
+import { Link } from "react-scroll";
 const Services = () => {
   return (
     <section className="">
@@ -147,13 +148,20 @@ const Services = () => {
                 雇う必要がなくなります！ <br />
                 制作費0円にも関わらず完全オリジナルデザイン
               </p>
-              <button className="btn m-10 text-2xl btn-error px-10 text-white hover:shadow-2xl  hover:shadow-orange-500 ">
-                {" "}
-                まずは 無料相談{" "}
-                <span className="p-2 animate-ping">
-                  <MdOutlineDoubleArrow />
-                </span>
-              </button>
+              <Link
+                to="contact"
+                spy={true}
+                smooth={true}
+                offset={-70} // Adjust the offset based on your layout
+                duration={500}
+              >
+                <button className="btn m-10 text-2xl btn-error px-10 text-white hover:shadow-2xl hover:shadow-orange-500 ">
+                  まずは無料相談
+                  <span className="p-2 animate-ping">
+                    <MdOutlineDoubleArrow />
+                  </span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>

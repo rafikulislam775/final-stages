@@ -3,8 +3,9 @@ import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import { useRef } from "react";
+import img from "../../assets/contact.jpg";
+
 const Contact = () => {
-  // service_ub4epbo
   const form = useRef();
   const {
     register,
@@ -13,39 +14,35 @@ const Contact = () => {
     getValues,
     reset,
   } = useForm();
+
   const sendEmail = async (e) => {
     e.preventDefault();
 
-    // Trigger form validation
     const isValid = await trigger();
 
     if (!isValid) {
-      // Show validation errors to the user
       Swal.fire({
-        title: "Oops!",
-        text: "Please fill in all the required fields correctly.",
+        title: "おっと！",
+        text: "すべての必須フィールドを正しく入力してください。",
         icon: "error",
       });
       return;
     }
 
-    // Check for empty fields
     const formData = getValues();
     if (Object.values(formData).some((value) => !value)) {
-      // Show alert for empty fields
       Swal.fire({
-        title: "Oops!",
-        text: "Please fill in all the required fields.",
+        title: "おっと！",
+        text: "すべての必須フィールドを入力してください。",
         icon: "error",
       });
       return;
     }
 
-    // Check if email and email confirmation match
     if (formData.from_email !== formData.confirm_email) {
       Swal.fire({
-        title: "Oops!",
-        text: "Email and confirmation email do not match.",
+        title: "おっと！",
+        text: "メールアドレスと確認用メールアドレスが一致しません。",
         icon: "error",
       });
       return;
@@ -61,16 +58,16 @@ const Contact = () => {
       .then(
         (result) => {
           Swal.fire({
-            title: "Success!",
-            text: "Your message has been sent successfully.",
+            title: "成功！",
+            text: "メッセージが正常に送信されました。",
             icon: "success",
           });
-          reset(); // Clear the form after successful submission if needed
+          reset();
         },
         (error) => {
           Swal.fire({
-            title: "Oops!",
-            text: "Something went wrong. Please try again later.",
+            title: "おっと！",
+            text: "何かがうまくいかなかったようです。後でもう一度お試しください。",
             icon: "error",
           });
           console.log(error.text);
@@ -83,9 +80,11 @@ const Contact = () => {
       <div className="text-center my-10">
         <Title>Contact Us</Title>
       </div>
-      <div>
-        <div> todo </div>
-        <div className="">
+      <div className="flex flex-col md:flex-row items-center justify-between ">
+        <div className="flex-1">
+          <img src={img} alt="" />
+        </div>
+        <div className="flex-1  ">
           <form
             target="_blank"
             ref={form}
@@ -93,17 +92,17 @@ const Contact = () => {
             className="max-w-md mx-auto"
           >
             {/* Name */}
-            <div className="relative z-0 w-full mb-5 group">
+            <div className="relative border  z-0 w-full mb-5 group">
               <input
                 {...register("from_name", {
                   required: "未入力です",
                   maxLength: {
                     value: 100,
-                    message: "Max length is 100 characters.",
+                    message: "最大100文字までです。",
                   },
                 })}
                 type="text"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-gray-600  border-b-2 border-gray-300 appearance-non focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-gray-600  border-b-2  appearance-non focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=""
                 required
               />
@@ -114,14 +113,15 @@ const Contact = () => {
                 <p className="text-red mt-1">{errors.from_name.message}</p>
               )}
             </div>
+
             {/* Company Name */}
-            <div className="relative z-0 w-full mb-5 group">
+            <div className="relative border  z-0 w-full mb-5 group">
               <input
                 {...register("company_name", {
                   required: "未入力です",
                   maxLength: {
                     value: 100,
-                    message: "Max length is 100 characters.",
+                    message: "最大100文字までです。",
                   },
                 })}
                 type="text"
@@ -136,14 +136,15 @@ const Contact = () => {
                 <p className="text-red mt-1">{errors.company_name.message}</p>
               )}
             </div>
+
             {/* Email */}
-            <div className="relative z-0 w-full mb-5 group">
+            <div className="relative border  z-0 w-full mb-5 group">
               <input
                 {...register("from_email", {
                   required: "未入力です",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Invalid email address.",
+                    message: "無効なメールアドレスです。",
                   },
                 })}
                 type="email"
@@ -158,14 +159,15 @@ const Contact = () => {
                 <p className="text-red mt-1">{errors.from_email.message}</p>
               )}
             </div>
+
             {/* Confirm Email */}
-            <div className="relative z-0 w-full mb-5 group">
+            <div className="relative border  z-0 w-full mb-5 group">
               <input
                 {...register("confirm_email", {
                   required: "未入力です",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                    message: "Invalid email address.",
+                    message: "無効なメールアドレスです。",
                   },
                 })}
                 type="email"
@@ -180,15 +182,12 @@ const Contact = () => {
                 <p className="text-red mt-1">{errors.confirm_email.message}</p>
               )}
             </div>
+
             {/* phone number */}
-            <div className="relative z-0 w-full mb-5 group">
+            <div className="relative border  z-0 w-full mb-5 group">
               <input
                 {...register("phone_number", {
                   required: "未入力です",
-                  pattern: {
-                    value: /^\d{11}$/,
-                    message: "Invalid phone number.",
-                  },
                 })}
                 type="tel"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -196,23 +195,23 @@ const Contact = () => {
                 required
               />
               <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                電話番号
+                電話番号 <span className="text-red-500">*</span>
               </label>
               {errors.phone_number && (
                 <p className="text-red mt-1">{errors.phone_number.message}</p>
               )}
             </div>
 
-            <div className="relative z-0 w-full mb-5 group">
+            <div className="relative border  z-0 w-full mb-5 group">
               <select
                 {...register("new_and_old", {
-                  required: "Please select an option.",
+                  required: "オプションを選択してください。",
                 })}
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               >
                 <option value="">選択</option>
-                <option value="new">新規サイト作成</option>
-                <option value="old">サイトリニューアル</option>
+                <option value="新規サイト作成">新規サイト作成</option>
+                <option value="サイトリニューアル">サイトリニューアル</option>
               </select>
               {errors.new_and_old && (
                 <p className="text-red mt-1">{errors.new_and_old.message}</p>
@@ -220,37 +219,59 @@ const Contact = () => {
             </div>
 
             {/* URL (optional based on select option) */}
-            {getValues("new_and_old") === "new" ? null : (
+            {getValues("new_and_old") === "新規サイト作成" ? null : (
               <>
-                <div className="relative z-0 w-full mb-5 group">
+                <div className="relative border  z-0 w-full mb-5 group">
                   <input
                     {...register("url", {
                       maxLength: {
                         value: 255,
-                        message: "Max length is 255 characters.",
+                        message: "最大255文字までです。",
                       },
                     })}
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     type="text"
                     placeholder=""
+                    defaultValue={"https://www.yourcompany.com/"}
                   />
                   <label className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]">
-                    ※現行サイトURLをご入力ください。
+                    ※よろしければ、現行サイトURLをご入力ください。
                   </label>
                 </div>
+                {errors.url && (
+                  <p className="text-red mt-1">{errors.url.message}</p>
+                )}
               </>
             )}
 
-            {errors.url && (
-              <p className="text-red mt-1">{errors.url.message}</p>
-            )}
-
-            <button
-              type="submit"
-              className="text-white  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Submit
-            </button>
+            {/* Message */}
+            <div className="relative border  z-0 w-full mb-5 group">
+              <textarea
+                {...register("message", {
+                  required: "このフィールドは必須です。",
+                  maxLength: {
+                    value: 2000,
+                    message: "最大2000文字までです。",
+                  },
+                })}
+                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                name="message"
+                placeholder=""
+                rows="4"
+                cols="50"
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                お問い合わせ内容 <span className="text-red-500">*</span>
+              </label>
+              {errors.message && (
+                <p className="text-red mt-1">{errors.message.message}</p>
+              )}
+            </div>
+            <div className="flex justify-center">
+              <button type="submit" className=" btn btn-wide btn-info ">
+                送信
+              </button>
+            </div>
           </form>
         </div>
       </div>

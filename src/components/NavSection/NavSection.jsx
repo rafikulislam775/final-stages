@@ -3,34 +3,34 @@ import logo from "../../assets/logo1.png";
 import Typewriter from "typewriter-effect";
 
 const NavSection = () => {
-  const menus = (
-    <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive }) => (isActive ? "bg-red-800" : "")}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/messages"
-          className={({ isActive }) => (isActive ? "bg-red-800" : "")}
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/messages"
-          className={({ isActive }) => (isActive ? "bg-red-800" : "")}
-        >
-          Home
-        </NavLink>
-      </li>
-    </>
-  );
+  // const menus = (
+  //   <>
+  //     <li>
+  //       <NavLink
+  //         to="/"
+  //         className={({ isActive }) => (isActive ? "bg-red-800" : "")}
+  //       >
+  //         Home
+  //       </NavLink>
+  //     </li>
+  //     <li>
+  //       <NavLink
+  //         to="/messages"
+  //         className={({ isActive }) => (isActive ? "bg-red-800" : "")}
+  //       >
+  //         Home
+  //       </NavLink>
+  //     </li>
+  //     <li>
+  //       <NavLink
+  //         to="/messages"
+  //         className={({ isActive }) => (isActive ? "bg-red-800" : "")}
+  //       >
+  //         Home
+  //       </NavLink>
+  //     </li>
+  //   </>
+  // );
   return (
     <nav>
       <div className="p-4 text-center bg-gradient-to-r from-red-500 to-fuchsia-300 text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl">
@@ -47,10 +47,7 @@ const NavSection = () => {
       </div>
 
       <div className="text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl mb-14">
-        <span className="  text-red-500 font-bold">
-          FINAL STAGE
-        </span>{" "}
-        に任せて
+        <span className="  text-red-500 font-bold">FINAL STAGE</span> に任せて
         <Typewriter
           options={{
             strings: [
